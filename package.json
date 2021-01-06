@@ -5,7 +5,10 @@
   "email": "gtsopour@gmail.com",
   "private": false,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "nodemon": "nodemon ./bin/www",
+    "debug": "nodemon --inspect ./bin/www",
+    "script": "node ./scripts/script.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
