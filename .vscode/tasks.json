@@ -1,0 +1,62 @@
+// This file will only exist if you need custom tasks or want to further configure any of the
+// automatic tasks that code generates for you
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "script",
+			"problemMatcher": [],
+			"label": "npm: script",
+			"detail": "node ./scripts/script.js",
+			"options": {
+				"env": {
+					"MESSAGE": "the strange side of things"
+				},
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		// If user-set background compatible npm: debug doesn't work, modify it like this and give it a different name:
+		// launch.json always prefers the global task even if a similar local task
+		// is defined. Can be helpful if you have a project with a different-than-normal setup
+		{
+			"type": "shell",
+			"command": "npm",
+			"args": ["run", "debug"],
+			"label": "server debug prelaunch",
+			"detail": "Run NPM Debug script",
+			"options": {
+				"cwd": "${workspaceFolder}" // Here's the difference from my regular user-level config
+			},
+			"isBackground": true,
+			"problemMatcher": [
+				{
+					"pattern": [
+						{
+							"regexp": ".",
+							"file": 1,
+							"location": 2,
+							"message": 3
+						}
+					],
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": ".",
+						"endsPattern": "."
+					}
+				}
+			]
+		}
+		// Override global task for keyboard shortcuts and other tasks:
+		// Ex. tasks that depend on each other must all exist in the same file
+		// {
+		// 	"type": "npm",
+		// 	"script": "script",
+		// 	"label": "npm: debug",
+		// 	"detail": "nodemon --inspect ./bin/www"
+		// }
+	]
+}
+// It is also possible to bind tasks to keybaord bindings (either auto-detected or custom labeled)
+// Tasks can also run in the background and be configured to auto-start even when folder is loaded
+// Tasks can be configured to run before and after debug configs as well if needed.

@@ -1,0 +1,11 @@
+{
+	"debug.javascript.autoAttachFilter": "onlyWithFlag",
+	// This setting below may result in a prompt in the bottom-left asking if you would like to permit the
+	// workspace to modify your environment
+	"terminal.integrated.env.windows": {
+		// Inherited by debug and tasks that run in integrated terminal (incl NPM Scripts Pane)
+		// Will not work on debugs that run in the integrated debug console. Those have to have
+		// env specified in launch.json
+		"MESSAGE2": "Hello again"
+	}
+}
