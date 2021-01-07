@@ -18,7 +18,7 @@
 		},
 		// If user-set background compatible npm: debug doesn't work, modify it like this and give it a different name:
 		// launch.json always prefers the global task even if a similar local task
-		// is defined. Can be helpful if you have a project with a different-than-normal setup
+		// is defined. Can be helpful if you have a project with a different than normal setup
 		{
 			"type": "shell",
 			"command": "npm",
@@ -47,7 +47,7 @@
 				}
 			]
 		}
-		// Override global task for keyboard shortcuts and other tasks:
+		// Uncomment to override global task for keyboard shortcuts and other tasks:
 		// Ex. tasks that depend on each other must all exist in the same file
 		// {
 		// 	"type": "npm",
