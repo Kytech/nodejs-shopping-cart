@@ -1,0 +1,14 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug Script File",
+			"console": "integratedTerminal",
+			"program": "${workspaceFolder}/path/to/script.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"cwd": "${workspaceFolder}/server"
+		}
+	]
+}

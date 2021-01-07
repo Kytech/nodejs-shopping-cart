@@ -1,0 +1,18 @@
+// Attach configs are very similar to these. If you want to setup an attach config, use the add configuration button
+// in the bottom right corner when a launch.json file is open or use intellisense to create a config.
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch Chrome",
+			"request": "launch",
+			"type": "pwa-chrome",
+			"url": "http://localhost:3000", // Adjust port number
+			"webRoot": "${workspaceFolder}/public",
+			// "runtimeArgs": ["--user-data-dir=c:\\users\\kylern\\chrome-debug-profiles\\nodejs-shopping-cart"], // If you want to persist extensions or other settings in debug browser. Modify path in parameter to be a folder where you want to store this browser's config and extensions.
+			// "runtimeExecutable" // Can be used to launch other chrome editions, or specify an executable path to try a different chromium based browser. If that doesn't work, try an attach config instead.
+			// "preLaunchTask": "npm: debug", // If you have auto-attach enabled, launch and debug the server as well. Requires either the user-level task included in this repo to be setup, or an equivalent/adjusted as needed version of the same task in .vscode/tasks.json. Should work for attach configs as well.
+			"cleanUp": "onlyTab" // Adjust based on personal preference. See Intellisense for info about this setting
+		}
+	]
+}

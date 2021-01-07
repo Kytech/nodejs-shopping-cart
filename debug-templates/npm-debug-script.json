@@ -1,0 +1,13 @@
+// Requries debug script in package.json
+// See this repo's package.json for an example
+{
+	"name": "NPM Debug Server",
+	"request": "launch",
+	"runtimeArgs": ["run-script", "debug"],
+	"runtimeExecutable": "npm",
+	"skipFiles": ["<node_internals>/**"],
+	"type": "pwa-node",
+	"console": "integratedTerminal",
+	"internalConsoleOptions": "neverOpen",
+	"cwd": "${workspaceFolder}/server"
+}

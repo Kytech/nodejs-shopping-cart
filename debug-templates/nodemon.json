@@ -1,0 +1,20 @@
+// If there is no NPM script with nodemon for your debugging
+// Also requries that nodemon be globaly installed on your machine
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"name": "Server - nodemon",
+			"program": "${workspaceFolder}/path/to/entrypoint/file.js", // Update for your project
+			"request": "launch",
+			"restart": true,
+			"runtimeExecutable": "nodemon",
+			"args": ["-e", "js,hbs"], // Update params if desired. These should work for most of our projects.
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"cwd": "${workspaceFolder}/server"
+		}
+	]
+}

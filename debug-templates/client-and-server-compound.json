@@ -1,0 +1,22 @@
+// For if you already have a launch config for both the client and server.
+// If you only have config for client and use auto-attach for server, use the "preLaunchTask" option
+// as described in chrome-launch.json
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug Server"
+			// Other config stuff...
+		},
+		{
+			"name": "Debug Client in Chrome"
+			// Other config stuff...
+		}
+	],
+	"compounds": [
+		{
+			"name": "Debug Client/Server",
+			"configurations": ["Debug Server", "Debug Client in Chrome"] // Values are names of configurations to launch
+		}
+	]
+}
