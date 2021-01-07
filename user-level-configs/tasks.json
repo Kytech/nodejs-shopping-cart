@@ -1,0 +1,51 @@
+// This task is used if you setup a debug profile for Chrome that should also launch and attach to the
+// server as well if you don't already have a debug profile for the server (ex. because you are
+// using the auto-attach feature and haven't needed to add another setup). Use a compound launch
+// config instead if you have a debug launch profile for the server or if you add one.
+//
+// To use on your Chrome client/server debug profile, just add "preLaunchTask": "npm: debug" to your
+// Chrome launch config. If you get an error about the cwd not existing or the profile isn't working after
+// this, copy the below task object into your .vscode/tasks.json file (or this entire file contents if that file doesn't
+// exist yet), change it's "label" property to something else, modify the "cwd" or other properties as needed,
+// then change your Chrome debug profile's "preLaunchTask" to match the new label. You can also do this process to tweak
+// any other parameters for that workspace only when that debug profile is used.
+{
+	"version": "2.0.0",
+	"tasks": [
+		// This task object is the one to copy to your user task file. It can be accessed by hitting
+		// F1 and then typing "Open User Tasks". If presented with prompts about the task type, just select
+		// other until the JSON opens, then clear whatever was automatically added. (hapens only on first time
+		// of opening this file)
+		{
+			"type": "shell",
+			"command": "npm",
+			"args": ["run", "debug"],
+			"label": "npm: debug",
+			"detail": "Run NPM Debug script",
+			"options": {
+				"cwd": "${workspaceFolder}/server"
+			},
+			// These two properties can be added to any task to allow it to run in the background
+			// without blocking other inter-dependent/following tasks or the debugger if used as
+			// a pre-launch task
+			"isBackground": true,
+			"problemMatcher": [
+				{
+					"pattern": [
+						{
+							"regexp": ".",
+							"file": 1,
+							"location": 2,
+							"message": 3
+						}
+					],
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": ".",
+						"endsPattern": "."
+					}
+				}
+			]
+		}
+	]
+}

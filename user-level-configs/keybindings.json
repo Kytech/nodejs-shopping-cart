@@ -1,0 +1,28 @@
+// Here's some keybindings I like to use in relation to npm generated tasks.
+// They're particularly useful for a workflow that uses the auto-attach feature
+// I've organized these so that npm task shortcuts that I added are triggered by
+// ctrl+alt+n followed by the first letter of the npm script to run.
+// I also added a shortcut for the JS debug terminal using ctrl+alt+j.
+// Copy these to your keybindings.json, which can be opened by pressing F1 followed
+// by typing "Preferences: Open Keyboard Shortcuts (JSON)"
+[
+	{
+		"key": "ctrl+alt+n s",
+		"command": "workbench.action.tasks.runTask",
+		"args": "npm: start"
+	},
+	{
+		"key": "ctrl+alt+n d",
+		"command": "workbench.action.tasks.runTask",
+		"args": "npm: debug"
+	},
+	{
+		"key": "ctrl+alt+n n",
+		"command": "workbench.action.tasks.runTask",
+		"args": "npm: nodemon"
+	},
+	{
+		"key": "ctrl+alt+j",
+		"command": "extension.pwa-node-debug.createDebuggerTerminal"
+	}
+]

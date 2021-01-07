@@ -1,0 +1,58 @@
+// Copy the below entries into your user-level settings file to have a default debug experience whenever you work
+// on a node project that should work almost out-of-the-box for most projects we work on.
+// If you don't really want to have a launch config for the server by default, just don't copy the launch property.
+// I did not include a default chrome launch config since all of our projects use a different port to listen on,
+// but using code's "Add Configuration" button in the bottom right corner when you have a launch.json file open or
+// VSCode's intellisense will fill out most of the settings you'll need for you. Just adjust the port and webRoot
+// accordingly. See comments towards the bottom of this file for a few other tips about setting up a Chrome launch
+// debug config. Those tips do not apply if you prefer to attach to Chrome.
+{
+	"debug.javascript.autoAttachFilter": "onlyWithFlag", // Set according to your preferences. See .vscode/settings for more info on this setting
+	"debug.javascript.terminalOptions": {
+		// Inherits integrated terminal env variables,
+		// so they don't need to be defined here again
+		"skipFiles": ["<node_internals>/**"]
+	},
+	"terminal.integrated.env.windows": {
+		// Inherited by debug profiles and tasks that run in integrated terminal (incl NPM Scripts Pane)
+		// Will not work on debug launch configs that run in the integrated debug console. Those
+		// have to be set in the env property of those launch configs
+		"NODE_ENV": "development"
+	},
+	"launch": {
+		"configurations": [
+			{
+				"name": "NPM Debug",
+				"request": "launch",
+				"runtimeArgs": ["run-script", "debug"],
+				"runtimeExecutable": "npm",
+				"skipFiles": ["<node_internals>/**"],
+				"type": "pwa-node",
+				"console": "integratedTerminal",
+				"internalConsoleOptions": "neverOpen",
+				"cwd": "${workspaceFolder}/server"
+			},
+			{
+				"type": "node",
+				"request": "attach",
+				"name": "Node - Attach",
+				"skipFiles": ["<node_internals>/**"],
+				// "processId": "${command:PickProcess}", // Manually choose the process to bind to
+				// "port": 9229, // Manually specify port
+				"restart": true, // Must be true if attaching to nodemon-managed process. Set to false to have debug end when process exits/restarts
+				"protocol": "inspector",
+				"cwd": "${workspaceFolder}/server"
+			}
+		],
+		// For Chrome debugs, maintain chrome extensions and settings by using the following debug launch config property
+		// "runtimeArgs": ["--user-data-dir=c:\\users\\kylern\\chrome-debug-profiles"]
+		// Any settings/history or extensions in the debug instance of chrome that is launched will persist past times
+		// when code clears it's temporary folders.
+
+		// If you have autoAttatch for JS enabled, instead of a launch config for the server-side, you can make
+		// a client and server debug profile by adding a "preLaunchTask": "npm: debug" to the chrome debug launch config
+		// as long as your npm: debug task is setup to properly run in the background. If server is setup with a launch
+		// entry as well, use a compound launch config instead.
+		"compounds": []
+	}
+}
