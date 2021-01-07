@@ -27,6 +27,7 @@ router.get('/add/:id', function(req, res, next) {
 });
 
 router.get('/cart', function(req, res, next) {
+  // Demo breaking on exceptions here
   if (!req.session.cart) {
     return res.render('cart', {
       products: null
