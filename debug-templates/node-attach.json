@@ -8,7 +8,7 @@
 			"skipFiles": ["<node_internals>/**"],
 			// "processId": "${command:PickProcess}", // If you need to manually choose the process to bind to. Will bind to default port if not specified
 			// "port": 9229, // If you need to manually specify port (using other than default)
-			"restart": true, // Required if nodemon is used. If no nodemon, leave out for debug to auto-stop with process
+			"restart": true, // Required if nodemon is used. If no nodemon, leave out for debug to auto-stop with process. Leaving this set as true by default because most debug setups tend to use nodemon
 			"protocol": "inspector",
 			"cwd": "${workspaceFolder}/server"
 		}

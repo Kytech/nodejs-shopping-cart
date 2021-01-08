@@ -7,16 +7,18 @@
 		{
 			"name": "Debug Server"
 			// Other config stuff...
+			// Can be anything that works to debug the server
 		},
 		{
 			"name": "Debug Client in Chrome"
 			// Other config stuff...
+			// For client-side/Chrome
 		}
 	],
 	"compounds": [
 		{
 			"name": "Debug Client/Server",
-			"configurations": ["Debug Server", "Debug Client in Chrome"] // Values are names of configurations to launch
+			"configurations": ["Debug Server", "Debug Client in Chrome"] // Values are names of configurations to launch. Just use whatever names you set for your client and server launch profiles.
 		}
 	]
 }

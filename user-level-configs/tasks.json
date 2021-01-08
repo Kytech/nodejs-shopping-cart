@@ -9,6 +9,9 @@
 // exist yet), change it's "label" property to something else, modify the "cwd" or other properties as needed,
 // then change your Chrome debug profile's "preLaunchTask" to match the new label. You can also do this process to tweak
 // any other parameters for that workspace only when that debug profile is used.
+//
+// If you plan to only use this type of setup in several workspaces instead of most of them, save this in your workspace's
+// tasks.json (.vscode/tasks.json) instead of your user-level tasks.
 {
 	"version": "2.0.0",
 	"tasks": [
