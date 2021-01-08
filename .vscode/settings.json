@@ -4,16 +4,18 @@
 	// you like a different setting better by default, go ahead and change this setting in your user-level
 	// settings as well.
 	"debug.javascript.autoAttachFilter": "onlyWithFlag",
+	
 	// This setting below may result in a prompt in the bottom-left asking if you would like to permit the
 	// workspace to modify your environment. You'll have to accept the prompt for these variables to take effect
 	// the first time you open the folder or when you first add this setting. Any time this setting changes, you'll
 	// need to reload/restart your integrated terminals (may show a warning icon in the terminal pane.)
 	"terminal.integrated.env.windows": {
+		
 		// Env variables that are inherited by debug profiels and tasks that run in integrated terminal
 		// (incl NPM Scripts Pane) Will not work on debugs that run in the integrated debug console. Those have to have
 		// env property specified in launch.json. I generally recommend setting your debug profiles for node to just
 		// use the integrated terminal instead.
-		//
+		
 		// This is really nice for adding personal debug env variable values into just this workspace.
 		// Great for keeping dev env variables separate from config env variables which are usually in
 		// something like a .env file
