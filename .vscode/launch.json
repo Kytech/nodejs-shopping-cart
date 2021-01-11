@@ -1,0 +1,114 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	// Tip: You can run a launch debug config without the debugger by selecting it
+	// in the debug option dropdown, then press ctrl+F5 or use the Run: Start without debugging
+	// command in the command palette
+	"version": "0.2.0",
+	"configurations": [
+		// Server-Side debug configs
+		// Nodemon/Node Attach to default local port from --inspect and similar (debug script in package.json)
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "Node - Attach to Server",
+			"skipFiles": ["<node_internals>/**"],
+			// "processId": "${command:PickProcess}", // If you need to manually choose the process to bind to
+			// "port": 9229, // If you need to manually specify port
+			"restart": true, // Required if nodemon is used. If no nodemon, leave out for debug to auto-stop with process
+			"protocol": "inspector",
+			"cwd": "${workspaceFolder}"
+		},
+		// Nodemon setup (global nodemon if not included in project)
+		{
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"name": "Server - nodemon",
+			"program": "${workspaceFolder}/bin/www",
+			"request": "launch",
+			"restart": true,
+			"runtimeExecutable": "nodemon",
+			"args": ["-e", "js,hbs"],
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"cwd": "${workspaceFolder}"
+		},
+		// NPM-specified Debug script
+		{
+			"name": "NPM Debug Server",
+			"request": "launch",
+			"runtimeArgs": ["run-script", "debug"],
+			"runtimeExecutable": "npm",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"cwd": "${workspaceFolder}"
+		},
+		// Debug a node js script without a NPM entry or with a custom launch setup (ex. If certain params are
+		// passed in to the script via package.json that you don't want in your dev setup)
+		{
+			"name": "Debug Script.js",
+			"console": "integratedTerminal",
+			"program": "${workspaceFolder}/scripts/script.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "pwa-node",
+			"cwd": "${workspaceFolder}",
+			"env": {
+				"MESSAGE": "the dark side"
+			}
+		},
+		// Chrome launch (Attach is very similar)
+		// I have personally had better results using launch as certain features don't seem to work with attach,
+		// like the green reload button in code does not refresh an attached browser, unlike launched.
+		{
+			"name": "Launch Chrome",
+			"request": "launch",
+			"type": "pwa-chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}/public",
+			"cleanUp": "onlyTab"
+		},
+		// Chrome launch custom profile dir
+		// Useful if you want to persist extensions (ex. you're using postman interceptor frequently)
+		// or if you use the workspace mapping feature in chrome regulary since this separates the configs for these
+		{
+			"name": "Launch Chrome Custom Profile",
+			"request": "launch",
+			"type": "pwa-chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}/public",
+			"cleanUp": "onlyTab",
+			"runtimeArgs": ["--user-data-dir=c:\\users\\<your user profile here>\\chrome-debug-profiles\\nodejs-shopping-cart"]
+		},
+		// Chrome debug may work with other chromium-based browsers. Launch should work if command line params are
+		// very similar to Chrome. Just specify the runtimeExecutable and runtimeArgs as needed.
+		// Attach should work if browser at least supports the chrome debug protocol. You could
+		// also add a preLaunchTask to launch the browser if you need to do an attach config because launch won't work,
+		// but want the convenience of launch.
+
+		// Debug client and server with auto-attach methodology
+		// Note: preLaunchTask appears to prefer user level tasks over auto-generated npm tasks
+		// Everything else will favor npm auto-generated or workspace level tasks of the npm type
+		{
+			"name": "Debug Client/Server",
+			"request": "launch",
+			"type": "pwa-chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}/public",
+			"cleanUp": "onlyTab",
+			"runtimeArgs": ["--user-data-dir=c:\\users\\<your user profile here>\\chrome-debug-profiles\\nodejs-shopping-cart"],
+			// "preLaunchTask": "npm: debug"
+			"preLaunchTask": "server debug prelaunch"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Client/Server Compund Debug",
+			"configurations": ["Server - nodemon", "Launch Chrome"]
+			// See intellisense for more config options
+		}
+	]
+}
